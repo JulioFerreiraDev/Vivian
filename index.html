@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Adubo NPK</title>
+    <style>
+        :root {
+            --verde-salvia: #9caf88;
+            --verde-salvia-escuro: #7a8c6a;
+            --fundo-claro: #f5f8f4;
+            --texto-escuro: #333;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color: var(--fundo-claro);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            color: var(--texto-escuro);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--verde-salvia-escuro);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid var(--verde-salvia);
+            background-color: #fff;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--verde-salvia);
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--verde-salvia-escuro);
+        }
+
+        #resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f0e4;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--verde-salvia-escuro);
+        }
+    </style>
+</head>
+<body>
+    <h2>Calculadora de Adubo NPK</h2>
+    <form id="aduboForm">
+        <label for="area">Área a ser adubada (m²):</label>
+        <input type="number" id="area" name="area" required>
+
+        <label for="npk">Recomendação de NPK (kg/ha):</label>
+        <input type="number" id="npk" name="npk" required>
+
+        <label for="eficiencia">Eficiência do adubo (%):</label>
+        <input type="number" id="eficiencia" name="eficiencia" value="100" required>
+
+        <button type="button" onclick="calcularAdubo()">Calcular</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script>
+        function calcularAdubo() {
+            const area = parseFloat(document.getElementById('area').value);
+            const npk = parseFloat(document.getElementById('npk').value);
+            const eficiencia = parseFloat(document.getElementById('eficiencia').value);
+
+            if (isNaN(area) || isNaN(npk) || isNaN(eficiencia) || area <= 0 || npk <= 0 || eficiencia <= 0) {
+                document.getElementById('resultado').innerHTML = "<strong>Por favor, insira valores válidos e positivos.</strong>";
+                return;
+            }
+
+            const kgPorMetroQuadrado = npk / 10000; // Conversão de kg/ha para kg/m²
+            const quantidadeAdubo = (area * kgPorMetroQuadrado) / (eficiencia / 100);
+
+            document.getElementById('resultado').innerHTML = `<strong>Quantidade de adubo necessária:</strong> ${quantidadeAdubo.toFixed(2)} kg`;
+        }
+    </script>
+</body>
+</html>
