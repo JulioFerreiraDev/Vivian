@@ -8,7 +8,7 @@
         :root {
             --verde-salvia: #9caf88;
             --verde-salvia-escuro: #7a8c6a;
-            --fundo-claro: #f5f8f4;
+            --fundo-claro: rgba(245, 248, 244, 0.9);
             --texto-escuro: #333;
         }
 
@@ -18,10 +18,20 @@
             padding: 20px;
             max-width: 600px;
             margin: auto;
-            background-color: var(--fundo-claro);
+            background-image: url('https://cdn.pixabay.com/photo/2020/06/30/19/42/the-green-moss-5357422_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             color: var(--texto-escuro);
+        }
+
+        .content {
+            background-color: var(--fundo-claro);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
         }
 
         .faixa-titulo {
@@ -93,6 +103,9 @@
         }
 
         footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             text-align: center;
             margin-top: 30px;
             padding: 20px;
@@ -101,9 +114,6 @@
             border-radius: 10px;
             font-size: 1.1rem;
             font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .instagram-icon {
@@ -119,35 +129,37 @@
     </style>
 </head>
 <body>
-    <div class="faixa-titulo">
-        Calculadora de Adubo NPK
+    <div class="content">
+        <div class="faixa-titulo">
+            Calculadora de Adubo NPK
+        </div>
+
+        <div class="imagem-container">
+            <img src="https://cdn.pixabay.com/photo/2021/05/03/13/32/greenhouse-6226263_1280.jpg" alt="Estufa com plantas verdes">
+        </div>
+
+        <form id="aduboForm">
+            <label for="area">Área a ser adubada (m²):</label>
+            <input type="number" id="area" name="area" required>
+
+            <label for="npk">Recomendação de NPK (kg/ha):</label>
+            <input type="number" id="npk" name="npk" required>
+
+            <label for="eficiencia">Eficiência do adubo (%):</label>
+            <input type="number" id="eficiencia" name="eficiencia" value="100" required>
+
+            <button type="button" onclick="calcularAdubo()">Calcular</button>
+        </form>
+
+        <div id="resultado"></div>
+
+        <footer>
+            © 2024 Vivian Kaufert - Todos os direitos reservados.
+            <a href="https://www.instagram.com/viviankaufert/" target="_blank" title="Instagram de Vivian Kaufert">
+                <img class="instagram-icon" src="https://cdn.pixabay.com/photo/2017/10/04/11/45/instagram-2815919_1280.jpg" alt="Ícone do Instagram">
+            </a>
+        </footer>
     </div>
-
-    <div class="imagem-container">
-        <img src="https://cdn.pixabay.com/photo/2021/05/03/13/32/greenhouse-6226263_1280.jpg" alt="Estufa com plantas verdes">
-    </div>
-
-    <form id="aduboForm">
-        <label for="area">Área a ser adubada (m²):</label>
-        <input type="number" id="area" name="area" required>
-
-        <label for="npk">Recomendação de NPK (kg/ha):</label>
-        <input type="number" id="npk" name="npk" required>
-
-        <label for="eficiencia">Eficiência do adubo (%):</label>
-        <input type="number" id="eficiencia" name="eficiencia" value="100" required>
-
-        <button type="button" onclick="calcularAdubo()">Calcular</button>
-    </form>
-
-    <div id="resultado"></div>
-
-    <footer>
-        © 2024 Vivian Kaufert - Todos os direitos reservados.
-        <a href="https://www.instagram.com/viviankaufert/" target="_blank" title="Instagram de Vivian Kaufert">
-            <img class="instagram-icon" src="https://cdn.pixabay.com/photo/2017/10/04/11/45/instagram-2815919_1280.jpg" alt="Ícone do Instagram">
-        </a>
-    </footer>
 
     <script>
         function calcularAdubo() {
