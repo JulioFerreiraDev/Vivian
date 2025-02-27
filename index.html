@@ -26,11 +26,27 @@
 
         .faixa-titulo {
             background-color: var(--verde-salvia);
-            padding: 15px;
+            padding: 20px;
             border-radius: 10px;
             text-align: center;
             color: white;
             margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .imagem-container {
+            width: 100%;
+            max-height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .imagem-container img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
         }
 
         label {
@@ -79,17 +95,22 @@
         footer {
             text-align: center;
             margin-top: 30px;
-            padding: 10px;
+            padding: 20px;
             background-color: var(--verde-salvia-escuro);
             color: white;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="faixa-titulo">
-        <h2>Calculadora de Adubo NPK</h2>
+        Calculadora de Adubo NPK
+    </div>
+
+    <div class="imagem-container">
+        <img src="https://cdn.pixabay.com/photo/2021/05/03/13/32/greenhouse-6226263_1280.jpg" alt="Estufa com plantas verdes">
     </div>
 
     <form id="aduboForm">
